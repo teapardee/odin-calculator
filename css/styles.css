@@ -1,6 +1,6 @@
 @font-face {
   font-family: "DigitalFont"; /*a name to be used later*/
-  src: url("./css/digital-7.regular.ttf"); /*URL to font*/
+  src: url("digital-7.regular.ttf"); /*URL to font*/
 }
 
 body {
