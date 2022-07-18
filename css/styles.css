@@ -1,6 +1,6 @@
 @font-face {
   font-family: "DigitalFont"; /*a name to be used later*/
-  src: url("digital-7.regular.ttf"); /*URL to font*/
+  src: url("./digital-7.regular.ttf"); /*URL to font*/
 }
 
 body {
@@ -26,7 +26,7 @@ body {
   gap: 7px;
 }
 
-.window {
+.calc-display {
   display: flex;
   min-width: 100%;
   min-height: 100%;
@@ -56,17 +56,9 @@ button {
   border-radius: 10px;
 }
 
-.large-button {
-  display: flex;
-  background-color: #2cccc3;
-  justify-content: center;
-  align-items: center;
-  margin: 5px;
-  border-radius: auto;
-  height: 100%;
-  border-radius: 10px;
-  width: 50px;
-  align-items: 100p;
+.btn-number:hover,
+.btn-function:hover {
+  transform: scale(1.05);
 }
 
 .btn-number,
