@@ -129,5 +129,8 @@ function multiply(a, b) {
 }
 
 function divide(a, b) {
+  if (parseInt(b) === 0) {
+    return "To Infinity and Beyond!";
+  }
   return parseInt(a) / parseInt(b);
 }
