@@ -22,7 +22,7 @@ for (i = 0; i < 16; i++) {
 var displayNumberOne;
 var displayNumberTwo;
 var displayOperator;
-var displayTotal;
+var displaySolution;
 
 /* Clear */
 
@@ -30,10 +30,10 @@ function clear() {
   displayNumberOne = "";
   displayNumberTwo = "";
   displayOperator = "";
-  displayTotal = "";
+  displaySolution = "";
 }
 
-/* Assign Values */
+/* Initializing Variables (Display Values) */
 
 function setDisplayNumbers(e) {
   let target = e.target;
@@ -45,25 +45,32 @@ function setDisplayNumbers(e) {
       display();
       break;
     case "=":
-      operate(displayNumberOne, displayNumberTwo, displayOperator);
-      displayTotalValue();
+      if (displayNumberOne && displayNumberTwo && displayOperator) {
+        operate(displayNumberOne, displayNumberTwo, displayOperator);
+        displayTotal();
+      }
       break;
     case "+":
     case "-":
     case "*":
     case "/":
-      if (!displayOperator) {
+      if (!displayOperator && !displaySolution) {
         displayOperator = buttonChar;
+        display();
       }
-      display();
       break;
     default:
-      if (!displayNumberOne) {
-        displayNumberOne = buttonChar;
-      } else if (!displayNumberTwo && displayOperator) {
-        displayNumberTwo = buttonChar;
+      if (!displayOperator && !displaySolution) {
+        !displayNumberOne
+          ? (displayNumberOne = buttonChar)
+          : (displayNumberOne = displayNumberOne + buttonChar);
+        display();
+      } else if (displayOperator && !displaySolution) {
+        !displayNumberTwo
+          ? (displayNumberTwo = buttonChar)
+          : (displayNumberTwo = displayNumberTwo + buttonChar);
+        display();
       }
-      display();
   }
 }
 
@@ -83,9 +90,9 @@ function display() {
   }
 }
 
-function displayTotalValue() {
+function displayTotal() {
   var display = document.querySelector(".calc-display");
-  display.innerHTML = `${displayTotal}`;
+  display.innerHTML = `${displaySolution}`;
 }
 
 /* Operations */
@@ -93,16 +100,16 @@ function displayTotalValue() {
 function operate(a, b, operator) {
   switch (operator) {
     case "+":
-      displayTotal = add(a, b);
+      displaySolution = add(a, b);
       break;
     case "-":
-      displayTotal = subtract(a, b);
+      displaySolution = subtract(a, b);
       break;
     case "*":
-      displayTotal = multiply(a, b);
+      displaySolution = multiply(a, b);
       break;
     case "/":
-      displayTotal = divide(a, b);
+      displaySolution = divide(a, b);
       break;
     default:
       return alert("Error");
