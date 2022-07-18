@@ -7,6 +7,7 @@ for (i = 0; i < 16; i++) {
   var button = document.createElement("button");
   button.innerHTML = array[i];
   button.addEventListener("click", setDisplayNumbers);
+  button.addEventListener("click", playAudio);
 
   if (Number.isInteger(array[i])) {
     button.className = "btn-number";
@@ -15,6 +16,11 @@ for (i = 0; i < 16; i++) {
   }
 
   buttonContainer.appendChild(button);
+
+  var audio = document.createElement("audio");
+  audio.id = "audio";
+  audio.src = "click.mp3";
+  buttonContainer.appendChild(audio);
 }
 
 /* Global Variables */
@@ -133,4 +139,9 @@ function divide(a, b) {
     return "To Infinity and Beyond!";
   }
   return parseInt(a) / parseInt(b);
+}
+
+function playAudio() {
+  var audio = document.getElementById("audio");
+  audio.play();
 }
